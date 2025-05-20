@@ -1,0 +1,70 @@
+# Virtual Environment
+venv/
+env/
+ENV/
+.env
+.venv
+env.bak/
+venv.bak/
+**/venv/
+**/env/
+
+# Python bytecode
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+**/dist/
+**/build/
+
+# Local development settings
+.env
+**/.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE specific files
+.idea/
+**/.idea/
+.vscode/
+**/.vscode/
+*.swp
+*.swo
+
+# macOS specific
+.DS_Store
+**/.DS_Store
+
+# Logs
+*.log
+logs/
+**/logs/
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# Data and model files
+data/
+**/data/
+clustering/
+**/clustering/
+*.csv
+*.pkl
+*.joblib
+*.h5
+*.model
+
+# Google Cloud specific
+.gcloudignore
+**/.gcloudignore

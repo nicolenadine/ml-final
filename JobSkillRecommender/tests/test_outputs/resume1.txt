@@ -1,0 +1,123 @@
+KEERTHANA PARSA 
++1 (669)-977-9524 | keerthana.parsa1997@gmail.com | linkedin.com/in/keerthana-parsa/ | San Jose, CA, USA, 95112 
+ 
+EDUCATION 
+ 
+Master of Science, Computer Software Engineering 
+Aug 2023 - May 2025 
+San Jose State University, California, USA 
+
+• 
+Relevant Courses: Enterprise Software Platforms, Distributed Systems, Enterprise Application development 
+Bachelor of Technology, Computer Science and Engineering, GPA: 3.6/4.0 
+Aug 2015 - May 2019 
+VNR Vignana Jyothi Institute of Engineering & Technology, Hyderabad, India 
+
+• 
+Relevant Courses: Data Structures and Algorithms, Data Mining, DBMS, Operating Systems, Java Programming 
+ 
+TECHNICAL SKILLS 
+ 
+
+• 
+Languages & Web Technologies: Java, Python, C, C++, HTML5, CSS3, JavaScript 
+
+• 
+Databases: Oracle, MySQL, MongoDB, Elastic Search 
+
+• 
+Software Engineering: SDLC, AGILE, JIRA 
+
+• 
+Tools, Libraries & Frameworks: Spring, Spring boot, Hibernate, Git, Maven, Express, ReactJS, NodeJS, Postman 
+
+• 
+Version Control Systems: GitHub, Bitbucket 
+
+• 
+Orchestration: Microservices, Netflix Conductor, Kubernetes, Netflix OSS 
+
+• 
+Cloud Technologies: Google Cloud Platform, Pub/Sub Messaging, AWS (EC2, S3), Google NLP 
+
+• 
+Testing and Automation: Rest Assured, TestNG, SOAP UI, JMeter, Mockito 
+ 
+PROFESSIONAL EXPERIENCE 
+ 
+Software Engineer, FTD India Private Ltd, Hyderabad 
+Jan 2021 - Jul 2023 
+
+• 
+Implemented a unified Order Management Platform, consolidating orders from 5 diverse channels including B2B, 
+B2C, and Shopify, resulted in the retirement of multiple legacy systems across FTD and ProFlowers, enhancing 
+operational efficiency. 
+
+• 
+Effectively directed the migration from legacy to advanced platform via multiple gateway services. Maintained full 
+traffic control ensuring a seamless transition and improved overall system efficiency. 
+
+• 
+Redesigned CSR agent screens' refund features, improving search speed and reducing refund costs by 8%. 
+
+• 
+Integrated bulk order processing capabilities into the system, aiding businesses during holiday seasons and reducing 
+CSR agent workload by 22%. 
+
+• 
+Optimized florist messaging with Drools & NLP, slashing manual tasks by 40% and boosting response time from 
+minutes to seconds. 
+
+• 
+Shifted to event-driven architecture, streamlining asynchronous tasks across 13 microservices. 
+
+• 
+Established a platform where different parts work together smoothly, creating a single reliable source of information. 
+
+• 
+Created informative technical and business dashboards to track application health and analyze key metrics related to 
+orders, refunds, and other important areas. 
+
+• 
+Utilized BigQuery for website data analysis, revealing key insights and emerging trends. 
+
+• 
+Achieved 80% automation in development testing using Junit and Mockito. 
+
+• 
+Created informative technical and business dashboards to monitor application health and analyze critical metrics 
+pertaining to orders and refunds. 
+Quality Assurance Engineer, FTD India Private Ltd, Hyderabad 
+Jun 2019 - Dec 2020 
+
+• 
+Developed a unified Automation Framework for UI and API testing using Selenium WebDriver and Rest Assured, with 
+separate base classes, TestNG for test case execution, and Extent Reports for comprehensive reporting. 
+
+• 
+Devised reusable functional techniques to effortlessly extract brand and environment-specific test data, properties, 
+and execute tasks such as calculating dates, culminating in enhanced operational efficiency. 
+ 
+PROJECT EXPERIENCE 
+ 
+Travel Tales - Microblogging Platform 
+Jun 2022 - Sep 2022 
+
+• 
+Developed 'Travel Tales', a microblogging platform enabling users to share concise posts. Integrated user-friendly 
+features like sign-up, content posting, and social interactions. 
+
+• 
+Utilized microservices architecture, Oracle Cloud and Kubernetes for deployment. Implemented REST APIs, CI/CD 
+workflows, and used MongoDB, Cassandra, and Redis for data management. Enhanced system observability with 
+Prometheus, Grafana, and Zipkin. 
+Real-Time Chat Application: Connecting Users in an Instant 
+Nov 2020 - Jan 2021 
+
+• 
+Developed a chat room application using Java, Spring Boot, HTML, JavaScript, and WebSocket, enabling users to 
+join a chat room and engage in real-time conversations with other participants. 
+
+• 
+Implemented the Model, Controller, and View components, ensuring proper data representation, handling of chat 
+room operations, and a user-friendly interface for seamless communication within chat room.

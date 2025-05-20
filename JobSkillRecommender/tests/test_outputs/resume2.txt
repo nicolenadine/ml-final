@@ -1,0 +1,68 @@
+Komal Venugopal Vattumilli
+(cid:131) (314) 201-5405 | (cid:239) Linkedin | § GitHub | # komalvenugopal@gmail.com | * Bayarea, CA 95113
+Education
+Master of Science in Computer Software Engineering Aug 2023 – May 2025
+San Jose State University, United States of America GPA: 3.80/4.00
+Bachelor of Technology, Computer Science Jul 2017 – Aug 2021
+Vellore Institute of Technology GPA: 4.00/4.00
+Technical Skills
+Languages: Python, Java, R, JavaScript, HTML, CSS, PHP, Linux
+Cloud & Databases: AWS (S3, Athena, Glue, EMR, Lambda, EC2, Redshift, Sagemaker), Microsoft Azure, MYSQL, Redis,
+Mongo DB, Apache Spark, Airflow, Kafka
+Web Frameworks: Snowflake, PowerBI, React.js, Redux, Node.js, Express.js, Flask, JUnit, Rest API
+Technologies: Git, Docker, Kubernetes, Ansible, Distributed Systems, Grafana, Datadog, CI/CD
+Experience
+Software Development Engineer | Headout Mar 2023 – Jul 2023
+
+• Implemented a statistical recommender system to process high-volume customer data logs in Spark and generates
+recommendations based on best-selling products, then ingested suggestions in Redis for lookup by the targeting engine.
+
+• Dockerized stand-alone recommendation system, deployed it into Kubernetes and achieved a 30% reduction in response
+times and a 20% improvement in resource utilization through horizontal autoscaling and performance optimization.
+Software Development Engineer | Jivox Corporation Jan 2021 – Mar 2023
+
+• Owned and delivered a Spark Streaming application on Amazon EMR to consume data from third-party Kafka channels
+and write to multiple other channels. Teams benefitted by retrieving employee and customer data near real-time.
+
+• Optimized ETL data pipelines for transferring on-premises data to a cloud-based Snowflake data warehouse, employing
+PySpark and AWS tools like Glue, S3, EC2, SageMaker, and Apache Airflow with DAGs, resulting in a 25% decrease in IT
+infrastructure expenses.
+
+• Implemented an elastic search server in Python to handle full, delta indexing jobs resulting in a significant decrease in
+retrieval time from 11 seconds to 1 second.
+
+• Implemented Jenkins pipelines and resolved SonarQube code smell issues for improved software reliability. Mentored
+Terraform Automation team for efficient management, resulting in streamlined deployment and workflows.
+
+• Awarded Above & Beyond Individual, Above & Beyond Team, Mountain Mover, Spot Awards.
+Software Development Engineer Intern | Efftronics Systems Pvt Ltd May 2019 – Jun 2019
+
+• Created a React application to monitor traffic at different junctions of the city utilizing Microsoft Vision API.
+
+• Analyzed image data from CCTV to train YOLO-based model for extracting vehicle count by converting to PCUs.
+Performed Linear, Exponential, and Random Forest models to predict green time with a min 0.06 RMSE value.
+Projects
+Mask Violation Detection System | AWS, React, Flask, OpenCV, MYSQL | Publication
+
+• Developed a full-stack web application to monitor and display real-time counts of individuals not adhering to face mask
+guidelines in public spaces. Integrated AWS SNS and Lambda to deliver immediate alerts for mask violations.
+Immigpt | React, Node.js, DynamoDB, Python, AWS, GCP, Large Language Models | Website
+
+• Engineered a dynamic web portal that harnessed the power of large language models and machine learning algorithms to
+provide immediate and accurate answers to immigration inquiries; this innovative platform significantly streamlined
+processes, reduced user frustration, and enhanced efficiency across multiple countries.
+“The Blink,” Technical article website | Node.js, HTML, CSS, JavaScript, Python, MySQL | Git
+
+• Designed a web application to efficiently categorize articles for simplified navigation and pioneered a novel method leveraging
+Natural Language Processing algorithms to classify articles and generate concise summaries.
+Achievements
+Research Publications : Smart Guidance System for Blind | Program Slicing Techniques
+Hackathons −
+
+• Secured first place in the Headout-AI Hackathon for developing an AI chatbot powered by OpenAI GPT-3.5-Turbo model
+and large language models.
+
+• Student Ambassador - Adobe | RunnerUp Jivox Byte Riot Hackathon for automating QA activities.
+Personal Projects : SoCalledHappenings - Instagram | ISO-SJSU
+Certifications : Azure-900, Ultimate AWS Certified Solutions Architect Associate, Certified Kubernetes Administrator, Python
+Data Structures, Object Oriented Programming in Java, The Complete Kubernetes Course, CI/CD with Jenkins pipelines

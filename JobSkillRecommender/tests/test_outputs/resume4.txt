@@ -1,0 +1,61 @@
+NICOLE WITT 
+Data and Computer Science Student 
+nicole.witt@sjsu.edu | 734-548-1273 | www.linkedin.com/nparziale16 
+ 
+EDUCATION 
+ 
+San Jose State University – San Jose, CA 
+ Expected graduation: May 2025 
+Bachelor of Science in Data Science 
+GPA: 3.68 
+ 
+Foothill College – Los Altos, CA 
+ 
+Associate of Sciences in Mathematics 
+GPA: 3.68 
+ 
+TECHNICAL SKILLS SUMMARY 
+ 
+Programming Languages: Python, R, Java, C++, JavaScript, React.js 
+Software: Github, AWS, Tableau, 
+Frameworks and Libraries: React.js, Node.js, Django, PyTorch, TensorFlow 
+Operating Systems: Mac OS / iOS, Linux 
+Databases: MySQL, Pinecone 
+ 
+RELEVANT COURSEWORK 
+ 
+Mathematics Coursework: Calculus III, Discrete Math, Linear Algebra 
+Computer Science Coursework: Data Structures & Algorithms, Processing Big-Data, Introduction to Machine Learning 
+ 
+WORK EXPERIENCE 
+ 
+Undergraduate Research Opportunity Program – San Jose, CA September 2023 – Current 
+Research Assistant 
+ 
+● 
+Designed and maintained database of over 10,000 context embeddings to improve large language model response 
+quality. 
+● 
+Launched a web-based chatbot application utilizing a React.js frontend and a fine-tuned ChatGPT4 model backend. 
+● 
+Collaborated with team members and the institutional review board to obtain permission to conduct human subjects 
+research to study the effectiveness of using artificial intelligence for stress management. 
+ 
+Empoder Latinas Code – Los Altos, CA 
+ June 2021 – December 2021 
+Web Development Intern 
+ 
+● 
+Designed and initiated a daily survey system to capture and analyze feedback from 30+ camp participants resulting 
+in a 20% improvement in student retention. 
+● 
+Collaborated cross-functionally to set objectives and strategies for web development, resulting in the development of 
+a brand-new website in under eight weeks. 
+● 
+Implemented automated tools to improve communication workflow that saved our team 8-10 hours per week over 
+manual methods. 
+ 
+LEADERSHIP ACTIVITIES 
+ 
+Foothill College Women in STEM club – Los Altos, CA January 2021 – January 
+Officer - Interclub council representative

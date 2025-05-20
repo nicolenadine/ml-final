@@ -1,0 +1,155 @@
+RAVJOT SINGH 
+(341)-345-1373 | ravjot313@gmail.com | LinkedIn | GitHub | Medium 
+ 
+SUMMARY 
+Aspiring Data Scientist with a background in Machine Learning and a history of driving Business Impact through Data Insights and 
+Operational Excellence. Actively seeking a Summer 2024 Data Science Internship to further enhance my Skills and contribute to 
+Transformative Data-Driven Solutions. 
+ 
+SKILLS 
+
+• 
+Statistical Programming Languages - Python (NumPy, Pandas, SciPy, Scikit-Learn, TensorFlow, Keras, Scrapy, Requests, OpenCV, 
+PyTorch, Selenium, BeautifulSoup); R (Dplyr, Rvest, Plyr) 
+
+• 
+Database Management Systems - MS SQL Server, MySQL 
+
+• 
+Data Visualization Tools - Python (Matplotlib, Seaborn, Bokeh, Plotly); R(ggplot); Power BI; Tableau 
+
+• 
+Statistical Concepts - Regression Modeling, Classification, Clustering, Random Forest, K-Nearest Neighbor, Support Vector Machine 
+(SVM), Time Series Forecasting 
+ 
+EDUCATION 
+Master of Science, Data Analytics 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ May 2025 
+San Jose State University, California 
+Bachelor of Technology, Electronics and Communications 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Jun 2021 
+Guru Gobind Singh Indraprastha University, Delhi 
+ 
+WORK HISTORY 
+GRADUATE TEACHING ASSISTANT, San Jose State University, San Jose, CA 
+ 
+ 
+ 
+ 
+ Sep 2023 – Present 
+
+• 
+Provide instructional support for MATH & CS courses, including preparing materials, setting up equipment, and managing the class 
+environment. 
+
+• 
+Demonstrate proficiency in grading assignments and exams, ensuring timely and constructive feedback to students. 
+
+• 
+Collaborate with professors to deliver lectures, facilitate discussions, and conduct laboratory sessions, enhancing students’ 
+understanding of the subject matter. 
+DATA SCIENTIST, Samsung, India 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Oct 2021 - Aug 2023 
+
+• 
+Developed Machine Learning Predictive models to assess customer propensity towards purchasing new products, reducing churn rate 
+by 3% and identifying opportunities for higher-priced offers to retain customers. 
+
+• 
+Utilized CHAID, Decision Tree, and Random Forest Models for driving CRM Marketing strategies. 
+
+• 
+Established and managed the Customer Loyalty Tracker, achieving a 10% increase in prediction accuracy of customer behavioral traits 
+compared to previous years. 
+
+• 
+Implemented a recommendation engine in production, generating an additional $2 million in quarterly revenue by suggesting 
+subsequent purchases based on customers' past behaviors. 
+ 
+DATA SCIENCE ANALYST, Varidus, Singapore 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ May 2020 - Aug 2020 
+
+• 
+Analyzed Merger & Acquisitions data for global startups to forecast their potential for future mergers. 
+
+• 
+Researched and evaluated competitive trends and investment opportunities in FinTech, Blockchain, AI, Logistics, SaaS, and EdTech 
+startups in Southeast Asia. 
+
+• 
+Collaborated with Varidus' Investment Banking Team to identify and generate leads by researching Investment Banking Firms in 
+Southeast Asia. 
+ 
+MACHINE LEARNING INTERN, SenseGrass Inc, India Apr 2020 - Jun 2020 
+
+• 
+Investigated remote sensing indices to develop systems for sourcing, curating, and predicting optimal sustainable practices to enhance 
+crop yield. 
+
+• 
+Conducted statistical analyses, utilizing measures such as mean, median, mode, percentiles, and variance on Normalized Difference 
+Vegetation Index (NDVI) Images to extract meaningful insights. 
+
+• 
+Executed geospatial analysis using the Rasterio library for data visualization purposes. 
+ 
+PROJECT EXPERIENCE 
+
+• 
+Customer Segmentation Analytics using Python 
+
+• 
+Recommendation Engine for Next purchase 
+
+• 
+Predicting Credit Card Approvals using Machine Learning 
+
+• 
+S&P100 Companies Case Study, NASDAQ Index, NYSE Index Historical Stock Markets Case Study 
+
+• 
+Heart Disease Prediction Model in Python 
+
+• 
+Hand-Written Digits Classification Model using KNN in Python 
+
+• 
+Parkinson's Disease Model in Python 
+
+• 
+Image Segmentation in Satellite Images using Neural Networks 
+
+• 
+Face Detection Using OpenCV in Python

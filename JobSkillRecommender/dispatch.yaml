@@ -1,0 +1,5 @@
+dispatch:
+  - url: "*/*"
+    service: default
+    rate_limits:
+      max_dispatches_per_day: 1000

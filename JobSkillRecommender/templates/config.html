@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ML Model Configuration - Resume-Job Matcher</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
+    <style>
+        .container {
+            max-width: 1200px;
+        }
+        .form-text {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        .metric-description {
+            background-color: #f1f8ff;
+            border-left: 4px solid #0d6efd;
+        }
+        .card {
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-braces-asterisk"></i> Resume-Job Matcher ML
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="bi bi-house-door"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/config">
+                            <i class="bi bi-gear"></i> Configuration
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1><i class="bi bi-gear-fill"></i> ML Model Configuration</h1>
+            <a href="/" class="btn btn-outline-primary">
+                <i class="bi bi-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Configuration</li>
+            </ol>
+        </nav>
+
+        {% if get_flashed_messages() %}
+        <div class="alert alert-info">
+            {% for message in get_flashed_messages() %}
+            <p><i class="bi bi-info-circle"></i> {{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-sliders"></i> Model Parameters</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('config') }}">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h4>Matching Algorithm</h4>
+
+                            <div class="form-group mb-3">
+                                <label for="metric" class="form-label">Distance Metric:</label>
+                                <select class="form-select" id="metric" name="metric">
+                                    <option value="cosine" {% if system_info.knn_model.metric == 'cosine' %}selected{% endif %}>Cosine Similarity</option>
+                                    <option value="euclidean" {% if system_info.knn_model.metric == 'euclidean' %}selected{% endif %}>Euclidean Distance</option>
+                                    <option value="manhattan" {% if system_info.knn_model.metric == 'manhattan' %}selected{% endif %}>Manhattan Distance</option>
+                                    <option value="chebyshev" {% if system_info.knn_model.metric == 'chebyshev' %}selected{% endif %}>Chebyshev Distance</option>
+                                    <option value="minkowski" {% if system_info.knn_model.metric == 'minkowski' %}selected{% endif %}>Minkowski Distance</option>
+                                    <option value="jaccard" {% if system_info.knn_model.metric == 'jaccard' %}selected{% endif %}>Jaccard Distance</option>
+                                    <option value="hamming" {% if system_info.knn_model.metric == 'hamming' %}selected{% endif %}>Hamming Distance</option>
+                                    <option value="canberra" {% if system_info.knn_model.metric == 'canberra' %}selected{% endif %}>Canberra Distance</option>
+                                </select>
+                                <div class="form-text">Choose how similarity is measured between resumes and jobs.</div>
+                            </div>
+
+                            <div class="metric-description alert alert-info mt-2 mb-3">
+                                <i class="bi bi-info-circle"></i>
+                                <span id="metric-description-text">
+                                    <!-- This will be updated by JavaScript based on selected metric -->
+                                    Cosine similarity measures the angle between vectors, good for comparing document similarity regardless of term frequency magnitude.
+                                </span>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="n_neighbors" class="form-label">Number of Neighbors:</label>
+                                <input type="number" class="form-control" id="n_neighbors" name="n_neighbors"
+                                      value="{{ system_info.knn_model.n_neighbors }}" min="1" max="100" />
+                                <div class="form-text">Maximum number of job matches to consider.</div>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="algorithm" class="form-label">KNN Algorithm:</label>
+                                <select class="form-select" id="algorithm" name="algorithm">
+                                    <option value="auto" {% if system_info.knn_model.algorithm == 'auto' %}selected{% endif %}>Auto</option>
+                                    <option value="ball_tree" {% if system_info.knn_model.algorithm == 'ball_tree' %}selected{% endif %}>Ball Tree</option>
+                                    <option value="kd_tree" {% if system_info.knn_model.algorithm == 'kd_tree' %}selected{% endif %}>KD Tree</option>
+                                    <option value="brute" {% if system_info.knn_model.algorithm == 'brute' %}selected{% endif %}>Brute Force</option>
+                                </select>
+                                <div class="form-text">Algorithm used to compute nearest neighbors.</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h4>Dimensionality Reduction</h4>
+
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="use_dim_reduction" name="use_dim_reduction"
+                                      {% if system_info.knn_model.use_dim_reduction %}checked{% endif %} />
+                                <label class="form-check-label" for="use_dim_reduction">
+                                    Use Dimensionality Reduction
+                                </label>
+                                <div class="form-text">Reduces feature space using PCA or SVD before matching.</div>
+                            </div>
+
+                            <div class="form-group mb-3 dim-reduction-options">
+                                <label for="reduction_method" class="form-label">Reduction Method:</label>
+                                <select class="form-select" id="reduction_method" name="reduction_method">
+                                    <option value="pca" {% if system_info.knn_model.reduction_method == 'pca' %}selected{% endif %}>PCA</option>
+                                    <option value="svd" {% if system_info.knn_model.reduction_method == 'svd' %}selected{% endif %}>SVD</option>
+                                </select>
+                                <div class="form-text">
+                                    PCA (Principal Component Analysis) or SVD (Singular Value Decomposition)
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3 dim-reduction-options">
+                                <label for="n_components" class="form-label">Number of Components:</label>
+                                <input type="number" class="form-control" id="n_components" name="n_components"
+                                      value="{{ system_info.knn_model.n_components }}" min="10" max="1000" />
+                                <div class="form-text">Number of dimensions to reduce to.</div>
+                            </div>
+
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="standardize" name="standardize"
+                                      {% if system_info.knn_model.standardize %}checked{% endif %} />
+                                <label class="form-check-label" for="standardize">
+                                    Standardize Features
+                                </label>
+                                <div class="form-text">Scale features to have zero mean and unit variance.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        <strong>Warning:</strong> Changing these settings will rebuild the model, which may take some time.
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary me-md-2">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Save Changes & Rebuild Model</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="bi bi-info-circle"></i> About Distance Metrics</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Best Used When</th>
+                                <th>Characteristics</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Cosine Similarity</strong></td>
+                                <td>Comparing text documents where term frequency isn't as important as presence</td>
+                                <td>Measures angle between vectors, ignores magnitude, values range from -1 to 1 (or 0 to 1 for non-negative data)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Euclidean Distance</strong></td>
+                                <td>Considers both presence and frequency of terms</td>
+                                <td>Straight-line distance, sensitive to scaling, gives higher weight to large differences</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Manhattan Distance</strong></td>
+                                <td>Dealing with sparse vectors or when distances along features should be considered separately</td>
+                                <td>Sum of absolute differences, less sensitive to outliers than Euclidean</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Jaccard Distance</strong></td>
+                                <td>Only cares about whether terms exist or not, not their frequency</td>
+                                <td>Based on set similarity, ignores magnitude completely, only considers presence/absence</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hamming Distance</strong></td>
+                                <td>Working with binary features (skills present/not present)</td>
+                                <td>Counts the number of positions at which features differ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0"><i class="bi bi-database"></i> System Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Job Database Size:</strong> {{ system_info.job_data.num_jobs }} jobs</p>
+                        <p><strong>Term Dictionary Size:</strong> {{ system_info.terms.num_terms }} terms</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Current Model:</strong> K-Nearest Neighbors</p>
+                        <p><strong>Dimensionality Reduction:</strong> {% if system_info.knn_model.use_dim_reduction %}Enabled ({{ system_info.knn_model.reduction_method|upper }}){% else %}Disabled{% endif %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="text-muted mb-0">Resume-Job Matcher ML &copy; 2024</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Distance metric descriptions
+        const metricDescriptions = {
+            'cosine': 'Cosine similarity measures the angle between vectors, good for comparing document similarity regardless of term frequency magnitude.',
+            'euclidean': 'Euclidean distance measures the straight-line distance between vectors, sensitive to both presence and frequency of terms.',
+            'manhattan': 'Manhattan distance sums the absolute differences between corresponding terms, less sensitive to outliers than Euclidean.',
+            'chebyshev': 'Chebyshev distance considers only the maximum difference across any dimension, focusing on the most dissimilar attribute.',
+            'minkowski': 'Minkowski distance is a generalization of Euclidean and Manhattan distances with a customizable p-parameter.',
+            'jaccard': 'Jaccard distance is based on set similarity, considering only the presence/absence of terms, not their frequency.',
+            'hamming': 'Hamming distance counts the number of positions at which features differ, good for binary feature vectors.',
+            'canberra': 'Canberra distance is a weighted version of Manhattan distance, more sensitive to small changes near zero.'
+        };
+
+        // Update metric description when selection changes
+        document.getElementById('metric').addEventListener('change', function() {
+            const description = metricDescriptions[this.value] || 'No description available for this metric.';
+            document.getElementById('metric-description-text').textContent = description;
+        });
+
+        // Handle dimensionality reduction checkbox
+        document.getElementById('use_dim_reduction').addEventListener('change', function() {
+            const dimReductionOptions = document.querySelectorAll('.dim-reduction-options');
+            dimReductionOptions.forEach(element => {
+                element.style.display = this.checked ? 'block' : 'none';
+            });
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial metric description
+            const selectedMetric = document.getElementById('metric').value;
+            document.getElementById('metric-description-text').textContent = metricDescriptions[selectedMetric] || 'No description available for this metric.';
+
+            // Set initial dim reduction display
+            const useDimReduction = document.getElementById('use_dim_reduction').checked;
+            const dimReductionOptions = document.querySelectorAll('.dim-reduction-options');
+            dimReductionOptions.forEach(element => {
+                element.style.display = useDimReduction ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

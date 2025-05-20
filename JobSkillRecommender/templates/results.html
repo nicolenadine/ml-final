@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Match Results - KNN ML</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-cloud@1.2.5/build/d3.layout.cloud.min.js"></script>
+    <style>
+        .container {
+            max-width: 1200px;
+        }
+        .job-card {
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: none;
+        }
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .match-score {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #0d6efd;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0 0.375rem 0 0.375rem;
+            font-weight: bold;
+        }
+        .badge-remote {
+            background-color: #20c997;
+        }
+        .chart-container {
+            height: 300px;
+            margin-bottom: 20px;
+        }
+        .word-cloud-container {
+            height: 300px;
+            margin-bottom: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        .description {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .model-metrics {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .analysis-header {
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .skill-tag {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            margin: 0.25rem;
+            background-color: #e9ecef;
+            border-radius: 0.25rem;
+            font-size: 0.85rem;
+        }
+        .matching-explanation {
+            background-color: #f1f8ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid #0d6efd;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-braces-asterisk"></i> Resume-Job Matcher ML
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1><i class="bi bi-clipboard-check"></i> Job Match Results</h1>
+            <a href="/" class="btn btn-outline-primary">
+                <i class="bi bi-upload"></i> Upload Another Resume
+            </a>
+        </div>
+
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle-fill"></i> Showing ML-based matches for resume: <strong>{{ resume_name }}</strong>
+            {% if error_message %}
+            <div class="alert alert-danger mt-2">
+                <i class="bi bi-exclamation-triangle-fill"></i> <strong>Error:</strong> {{ error_message }}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="row">
+            <!-- Left column - Job matches -->
+            <div class="col-lg-7">
+                <h2 class="mb-3">Top Job Matches</h2>
+
+                <div class="matching-explanation mb-4">
+                    <h5><i class="bi bi-lightbulb"></i> How KNN Matching Works</h5>
+                    <p>Using the K-Nearest Neighbors algorithm with Principal Component Analysis (PCA), we've found the most similar job postings to your resume in a high-dimensional feature space. Each match score represents the cosine similarity between your resume's feature vector and the job posting's vector.</p>
+                </div>
+
+                {% for job in results %}
+                <div class="card job-card">
+                    <div class="card-body">
+                        <div class="match-score">{{ job.match_percent }}</div>
+                        <h4 class="card-title">{{ job.title }}</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ job.company }}</h6>
+
+                        <div class="d-flex mb-3 flex-wrap">
+                            <div class="me-3 mb-2">
+                                <i class="bi bi-geo-alt"></i> {{ job.location }}
+                            </div>
+                            {% if job.remote == 'Yes' %}
+                            <div class="me-3 mb-2">
+                                <span class="badge bg-success badge-remote">Remote</span>
+                            </div>
+                            {% endif %}
+                            <div class="mb-2">
+                                <i class="bi bi-currency-dollar"></i> {{ job.salary }}
+                            </div>
+                        </div>
+
+                        <div class="description mb-3">
+                            <h6><i class="bi bi-file-text"></i> Description:</h6>
+                            <p class="card-text">{{ job.description[:300] }}{% if job.description|length > 300 %}...{% endif %}</p>
+                        </div>
+
+                        {% if job.url and job.url != '#' %}
+                        <a href="{{ job.url }}" target="_blank" class="btn btn-primary">
+                            <i class="bi bi-link-45deg"></i> View Job
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Right column - Analysis and visualizations -->
+            <div class="col-lg-5">
+                <div class="model-metrics">
+                    <h4 class="analysis-header"><i class="bi bi-robot"></i> ML Model Information</h4>
+                    <div class="row">
+                        <div class="col-6">
+                            <p><strong>Algorithm:</strong> K-Nearest Neighbors</p>
+                        </div>
+                        <div class="col-6">
+                            <p><strong>Distance Metric:</strong> {{ system_info.knn_model.metric }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p><strong>Feature Count:</strong> {{ system_info.terms.num_terms }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p><strong>Job Database:</strong> {{ system_info.job_data.num_jobs }} postings</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="analysis-header"><i class="bi bi-graph-up"></i> Skills Analysis</h4>
+
+                <div class="chart-container">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+
+                <h4 class="analysis-header"><i class="bi bi-tags"></i> Key Terms in Your Resume</h4>
+
+                <div class="word-cloud-container">
+                    <div id="wordCloud"></div>
+                </div>
+
+                <div class="mb-4">
+                    <h5>Top Matching Skills</h5>
+                    <div class="skill-tags">
+                        <!-- Populated by JavaScript -->
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i> Loading matching skills...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Debug section (always visible in development) -->
+        <div id="troubleshooting" class="card mt-4">
+            <div class="card-header bg-warning">
+                <h5 class="mb-0">
+                    <i class="bi bi-tools"></i> Troubleshooting
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>Here's some debug information about the data:</p>
+                <div id="debug-info" class="p-3 bg-light rounded">
+                    <p>Loading debug info...</p>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary mt-2" onclick="toggleRawData()">Show Raw JSON Data</button>
+                <div id="raw-data" class="mt-2" style="display: none;">
+                    <h6>Terms Data JSON (first 500 chars):</h6>
+                    <pre class="bg-light p-2 small">{% if terms_data_json is defined %}{{ terms_data_json[:500]|safe }}{% else %}Not available{% endif %}</pre>
+                    <h6>Top Terms JSON (first 500 chars):</h6>
+                    <pre class="bg-light p-2 small">{% if top_terms_json is defined %}{{ top_terms_json[:500]|safe }}{% else %}Not available{% endif %}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="text-muted mb-0">Resume-Job Matcher ML &copy; 2024</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Function to toggle raw data display
+        function toggleRawData() {
+            const rawData = document.getElementById('raw-data');
+            if (rawData.style.display === 'none') {
+                rawData.style.display = 'block';
+            } else {
+                rawData.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // Get data from pre-processed JSON (generated by Flask)
+                let skillsData = [];
+                let termsArray = [];
+
+                try {
+                    // Try to parse the JSON data, with fallbacks if it's not available
+                    {% if terms_data_json is defined %}
+                    skillsData = JSON.parse('{{ terms_data_json|safe }}');
+                    {% else %}
+                    console.error("terms_data_json is not defined");
+                    skillsData = [];
+                    {% endif %}
+
+                    {% if top_terms_json is defined %}
+                    termsArray = JSON.parse('{{ top_terms_json|safe }}');
+                    {% else %}
+                    console.error("top_terms_json is not defined");
+                    termsArray = [];
+                    {% endif %}
+                } catch (e) {
+                    console.error("Error parsing JSON data:", e);
+                    // Provide fallback empty arrays
+                    skillsData = [];
+                    termsArray = [];
+                }
+
+                // Skills chart
+                const ctx = document.getElementById('skillsChart').getContext('2d');
+
+                if (skillsData.length > 0) {
+                    // Sort by score
+                    skillsData.sort((a, b) => b.score - a.score);
+
+                    // Create chart
+                    const chart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: skillsData.map(item => item.term),
+                            datasets: [{
+                                label: 'Skill Contribution Score',
+                                data: skillsData.map(item => item.score),
+                                backgroundColor: 'rgba(13, 110, 253, 0.7)',
+                                borderColor: 'rgba(13, 110, 253, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            scales: {
+                                x: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Contribution to Match Score'
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Top Skills Contributing to Match',
+                                    font: {
+                                        size: 16
+                                    }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            return `Score: ${context.raw.toFixed(2)}`;
+                                        }
+                                    }
+                                }
+                            },
+                            responsive: true,
+                            maintainAspectRatio: false
+                        }
+                    });
+                } else {
+                    // Show a message when no skill data is available
+                    const noDataMessage = document.createElement('div');
+                    noDataMessage.className = 'alert alert-info';
+                    noDataMessage.innerHTML = '<i class="bi bi-info-circle"></i> No skill data available to display.';
+                    const chartParent = document.getElementById('skillsChart').parentNode;
+                    chartParent.appendChild(noDataMessage);
+                    document.getElementById('skillsChart').style.display = 'none';
+                }
+
+                // Simple word cloud
+                const cloudContainer = document.getElementById('wordCloud');
+
+                // Clear any existing content
+                cloudContainer.innerHTML = "";
+
+                if (termsArray.length > 0) {
+                    // Create a styled container
+                    const cloudDiv = document.createElement('div');
+                    cloudDiv.style.padding = '20px';
+                    cloudDiv.style.textAlign = 'center';
+                    cloudDiv.style.height = '300px';
+                    cloudDiv.style.overflowY = 'hidden';
+
+                    // Add each term with random styling
+                    const colors = [
+                        '#0d6efd', '#6610f2', '#6f42c1', '#d63384', '#dc3545',
+                        '#fd7e14', '#ffc107', '#198754', '#20c997', '#0dcaf0'
+                    ];
+
+                    // Create word cloud
+                    termsArray.forEach(term => {
+                        const span = document.createElement('span');
+                        span.textContent = term;
+
+                        // Random styling
+                        const size = 14 + Math.floor(Math.random() * 24); // 14px to 38px
+                        const colorIndex = Math.floor(Math.random() * colors.length);
+                        const weight = Math.random() > 0.5 ? 'bold' : 'normal';
+
+                        span.style.fontSize = `${size}px`;
+                        span.style.color = colors[colorIndex];
+                        span.style.fontWeight = weight;
+                        span.style.margin = '0.5rem';
+                        span.style.display = 'inline-block';
+
+                        cloudDiv.appendChild(span);
+                    });
+
+                    // Add to container
+                    cloudContainer.appendChild(cloudDiv);
+                } else {
+                    // Show a message when no terms data is available
+                    const noDataMessage = document.createElement('div');
+                    noDataMessage.className = 'alert alert-info';
+                    noDataMessage.innerHTML = '<i class="bi bi-info-circle"></i> No term data available to display.';
+                    cloudContainer.appendChild(noDataMessage);
+                }
+
+                // Update the skill tags section if it exists
+                const skillTagsContainer = document.querySelector('.skill-tags');
+                if (skillTagsContainer && skillsData.length > 0) {
+                    skillTagsContainer.innerHTML = ''; // Clear existing content
+
+                    // Add top skills as tags
+                    skillsData.slice(0, 10).forEach(item => {
+                        const tag = document.createElement('span');
+                        tag.className = 'skill-tag';
+                        tag.textContent = item.term;
+                        skillTagsContainer.appendChild(tag);
+                    });
+                } else if (skillTagsContainer) {
+                    skillTagsContainer.innerHTML = '<div class="alert alert-info"><i class="bi bi-info-circle"></i> No skill tags available.</div>';
+                }
+
+                // Update debug info
+                const debugInfo = document.getElementById('debug-info');
+                if (debugInfo) {
+                    debugInfo.innerHTML = `
+                        <p><strong>Skills Data Count:</strong> ${skillsData.length}</p>
+                        <p><strong>Terms Array Count:</strong> ${termsArray.length}</p>
+                        <p><strong>Page Loaded At:</strong> ${new Date().toLocaleString()}</p>
+                    `;
+                }
+
+            } catch (error) {
+                console.error("Error in main script:", error);
+                // Show error in the debug section
+                const debugInfo = document.getElementById('debug-info');
+                if (debugInfo) {
+                    debugInfo.innerHTML = `
+                        <div class="alert alert-danger">
+                            <strong>JavaScript Error:</strong> ${error.message}
+                        </div>
+                    `;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

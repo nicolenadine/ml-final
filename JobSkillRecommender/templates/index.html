@@ -1,0 +1,181 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Job Matcher</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 800px;
+        }
+        .upload-area {
+            border: 2px dashed #ccc;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+        .upload-area:hover {
+            border-color: #0d6efd;
+            background-color: #f1f8ff;
+        }
+        .features {
+            margin-top: 3rem;
+        }
+        .feature-card {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <i class="bi bi-braces-asterisk"></i> Resume-Job Matcher ML
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">
+                        <i class="bi bi-house-door"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ config_url }}">
+                        <i class="bi bi-gear"></i> Configuration
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="jumbotron mt-4">
+            <h1 class="display-4">Find Your Perfect Job Match</h1>
+            <p class="lead">Upload your resume and we'll match you with the most relevant job postings based on your skills and experience.</p>
+        </div>
+
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="upload-area" id="drop-area">
+                <h5>Upload Resume</h5>
+                <p>Drag and drop your resume PDF file here, or click to select a file</p>
+                <input type="file" name="resume" id="resume-file" class="form-control" accept=".pdf" required>
+                <small class="text-muted">Supported format: PDF</small>
+            </div>
+
+            <div class="mb-3">
+                <label for="top_n" class="form-label">Number of matches to display:</label>
+                <select class="form-select" id="top_n" name="top_n">
+                    <option value="5" selected>5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">Find Job Matches</button>
+            </div>
+        </form>
+
+        <div class="features mt-5">
+            <h2 class="text-center mb-4">How It Works</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5 class="card-title">1. Upload Your Resume</h5>
+                            <p class="card-text">Start by uploading your resume in PDF format. Our system will extract the text and analyze your skills and experience.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5 class="card-title">2. AI Analysis</h5>
+                            <p class="card-text">Our advanced matching algorithm compares your resume to thousands of job postings to find the best matches for your skills.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5 class="card-title">3. View Matches</h5>
+                            <p class="card-text">Review your personalized job matches ranked by relevance, with detailed information about each position.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="text-muted mb-0">Resume Job Matcher &copy; 2024</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Drag and drop functionality
+        const dropArea = document.getElementById('drop-area');
+        const fileInput = document.getElementById('resume-file');
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight() {
+            dropArea.classList.add('bg-light');
+        }
+
+        function unhighlight() {
+            dropArea.classList.remove('bg-light');
+        }
+
+        dropArea.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            fileInput.files = files;
+        }
+
+        // Click to select
+        dropArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+    </script>
+</body>
+</html>
