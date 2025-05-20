@@ -1,32 +1,26 @@
-### JobSkillRecommender
+# JobSkillRecommender
 A machine learning system that matches resumes to job postings using KNN (K-Nearest Neighbors) algorithm and natural language processing techniques.
-Project Overview
-JobSkillRecommender is an advanced job matching system designed to help CS/DS job-seekers find the most relevant job opportunities based on their resumes. The system uses machine learning techniques, specifically K-Nearest Neighbors (KNN), to compare resume content with job descriptions and find the best matches.
-The system extracts key technical terms from both resumes and job postings, creates feature vectors based on these terms, and uses KNN to find the most similar jobs for a given resume. It also provides detailed explanations of why certain jobs were matched, highlighting the specific skills and terms that contributed to the match.
-Key Features
 
-Resume Parsing: Extract text from PDF resumes with fallback OCR support for image-based PDFs
-Term-Based Feature Engineering: Uses a comprehensive dictionary of technical terms organized by category
-Machine Learning Matching: KNN algorithm with options for different distance metrics
-Dimensionality Reduction: Option to use PCA or SVD for better performance
-Match Explanation: Provides detailed information about why matches were made
-Web Interface: Flask-based web application for easy job matching
-Configurable Parameters: User interface for tweaking matching algorithm parameters
+### Project Overview
+
+JobSkillRecommender is a job matching system designed to help CS/DS job-seekers find the most relevant job opportunities based on their resumes. The system uses K-Nearest Neighbors (KNN), to compare resume content with job descriptions and find the best matches.
+
+The system extracts key technical terms from both resumes and job postings, creates feature vectors based on these terms, and uses KNN to find the most similar jobs for a given resume. It also provides detailed explanations of why certain jobs were matched, highlighting the specific skills and terms that contributed to the match.
+
+### Key Features
+
+- Resume Parsing: Extract text from PDF resumes with fallback OCR support for image-based PDFs
+- Term-Based Feature Engineering: Uses a comprehensive dictionary of technical terms organized by category
+- Machine Learning Matching: KNN algorithm with options for different distance metrics
+- Dimensionality Reduction: Option to use PCA or SVD for better performance
+- Match Explanation: Provides detailed information about why matches were made including a bar graph showing key match features and a word cloud.
+- Web Interface: Flask-based web application for easy job matching
+- Configurable Parameters: User interface for tweaking matching algorithm parameters including distance metrics, number of components in PCA, and algorithm type
 
 ## Project Structure
 ```JobSkillRecommender/
-├── clustering/                  # Job clustering scripts for data preparation
-│   ├── visualizations/          # Visualizations from clustering analysis
-│   ├── clean_cluster_list.py    # Script to clean clustered job lists
-│   ├── count.py                 # Utility for counting data properties
-│   ├── data_exploration.py      # Data exploration and analysis
-│   ├── extract_clustered_titles.py  # Extract job titles from clusters
-│   ├── filter_job_titles.py     # Filter job titles based on criteria
-│   ├── job_clustering.py        # Main clustering implementation
-│   ├── job_keyword_extractor.py # Extract keywords from job postings
-│   ├── run_clustering.py        # Script to run clustering process
-│   └── unique.py                # Utility for finding unique entities
-├── data/                        # Data directory
+
+├── data/                        # Data directory downloaded from provided drive link
 │   ├── models/                  # Saved ML models
 │   ├── processed/               # Processed datasets
 │   ├── raw/                     # Raw input data
@@ -51,28 +45,33 @@ Configurable Parameters: User interface for tweaking matching algorithm paramete
 ## Core Components
 1. Resume Processing
 
-resume_parser.py: Extracts text from PDF resumes using multiple strategies for maximum reliability
-resume_analyzer.py: Analyzes resume text to extract structured information and create feature vectors
+[resume_parser.py](https://github.com/nicolenadine/ml-final/blob/main/JobSkillRecommender/resume_parser.py): Extracts text from PDF resumes using multiple strategies for maximum reliability
+[resume_analyzer.py](https://github.com/nicolenadine/ml-final/blob/main/JobSkillRecommender/resume_analyzer.py): Analyzes resume text to extract structured information and create feature vectors
 
 2. Job Processing
 
-job_vectorizer.py: Processes job postings into term vectors for efficient similarity matching
-job_keyword_extractor.py: Extracts technical keywords specific to CS/DS roles from job postings
+[job_vectorizer.py](https://github.com/nicolenadine/ml-final/blob/main/JobSkillRecommender/job_vectorizer.py): Processes job postings into term vectors for efficient similarity matching
 
 3. Matching Engine
 
-knn_matcher.py: Implements KNN algorithm for matching resumes to jobs with options for different metrics
-term_utils.py: Utility functions for creating term vectors and calculating similarity
-custom_terms.py: Comprehensive dictionary of technical terms organized by category
+[knn_matcher.py](https://github.com/nicolenadine/ml-final/blob/main/JobSkillRecommender/knn_matcher.py): Implements KNN algorithm for matching resumes to jobs with options for different metrics
+[term_utils.py](https://github.com/nicolenadine/ml-final/blob/main/JobSkillRecommender/term_utils.py): Utility functions for creating term vectors and calculating similarity
+[custom_terms.py](https://github.com/nicolenadine/ml-final/blob/main/JobSkillRecommender/custom_terms.py): Comprehensive dictionary of technical terms organized by category
 
 4. Web Interface
 
-app.py: Flask web application with upload form and results visualization
+[app.py](https://github.com/nicolenadine/ml-final/blob/main/JobSkillRecommender/app.py): Flask web application with upload form and results visualization
 config.html: Configuration page for the matching algorithm parameters
 index.html: Home page with upload form
 results.html: Results page showing job matches with visualizations
 
 ## Usage
+
+** Important** 
+Files are currently designed to work with this [data directory](https://drive.google.com/file/d/14X-rVfdDuDZ8r_yXKuAaSsecuPHL9u5S/view?usp=share_link) unzip the downloaded directory and place it inside the JobSkillsRecommender directory.
+
+In future updates I will modify the code to work with any csv dataset that contains the minimum required information. 
+
 Web Interface
 
 Run the Flask application:
