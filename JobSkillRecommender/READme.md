@@ -1,4 +1,4 @@
-JobSkillRecommender
+### JobSkillRecommender
 A machine learning system that matches resumes to job postings using KNN (K-Nearest Neighbors) algorithm and natural language processing techniques.
 Project Overview
 JobSkillRecommender is an advanced job matching system designed to help CS/DS job-seekers find the most relevant job opportunities based on their resumes. The system uses machine learning techniques, specifically K-Nearest Neighbors (KNN), to compare resume content with job descriptions and find the best matches.
@@ -13,8 +13,8 @@ Match Explanation: Provides detailed information about why matches were made
 Web Interface: Flask-based web application for easy job matching
 Configurable Parameters: User interface for tweaking matching algorithm parameters
 
-Project Structure
-JobSkillRecommender/
+## Project Structure
+```JobSkillRecommender/
 ├── clustering/                  # Job clustering scripts for data preparation
 │   ├── visualizations/          # Visualizations from clustering analysis
 │   ├── clean_cluster_list.py    # Script to clean clustered job lists
@@ -47,8 +47,8 @@ JobSkillRecommender/
 ├── resume_match.py              # CLI script for matching resumes to jobs
 ├── resume_parser.py             # Parser for extracting text from resumes
 └── term_utils.py                # Utilities for term vector creation
-
-Core Components
+```
+## Core Components
 1. Resume Processing
 
 resume_parser.py: Extracts text from PDF resumes using multiple strategies for maximum reliability
@@ -72,7 +72,7 @@ config.html: Configuration page for the matching algorithm parameters
 index.html: Home page with upload form
 results.html: Results page showing job matches with visualizations
 
-Usage
+## Usage
 Web Interface
 
 Run the Flask application:
@@ -82,7 +82,7 @@ Open a web browser and navigate to http://localhost:5000
 Upload a resume (PDF format)
 Review the job matches displayed on the results page
 
-Command Line
+## Command Line
 Match a resume to jobs:
 python resume_match.py path/to/resume.pdf --metric cosine --neighbors 10
 Options:
@@ -94,7 +94,7 @@ Options:
 --output: Output file path for results
 --verbose: Print verbose output
 
-Algorithm Details
+## Algorithm Details
 The matching system works through the following process:
 
 Text Extraction: The resume is parsed using PyMuPDF and pdfplumber with OCR fallback
@@ -110,8 +110,8 @@ Algorithm options: auto, ball_tree, kd_tree, brute
 Dimensionality reduction methods: PCA, SVD
 Feature standardization options
 
-Future Improvements
-
+## Future Improvements
+Web scraping and logic to retrieve current job data and exclude outdated postings.
 Enhanced Resume Parsing: Improve text extraction from complex PDF formats
 More Advanced NLP: Implement word embeddings or transformers for better semantic matching
 Skill Gap Analysis: Identify missing skills in resumes compared to desired jobs
@@ -119,10 +119,11 @@ Interactive Visualizations: Add more interactive visualizations of job matches
 User Feedback Loop: Incorporate user feedback on match quality to improve the algorithm
 Multi-language Support: Extend support for resumes and job descriptions in multiple languages
 Job Recommendation API: Create a REST API for integrating with other applications
-Mobile App: Develop a mobile application for on-the-go job matching
 
-File Descriptions
-Main System Components
+
+## File Descriptions
+
+**Main System Components**
 
 app.py: Flask web application for the user interface
 resume_job_system.py: Main system integrating all components
@@ -133,7 +134,7 @@ custom_terms.py: Dictionary of technical terms by category
 term_utils.py: Utilities for term vector creation and similarity calculation
 resume_match.py: Command-line script for matching resumes to jobs
 
-Data Processing Components
+**Data Processing Components**
 
 job_clustering.py: Implements clustering for job categorization
 job_keyword_extractor.py: Extracts relevant keywords from job postings
@@ -142,7 +143,7 @@ filter_job_titles.py: Filters job titles for relevant positions
 clean_cluster_list.py: Cleans clustered job lists for better matching
 data_exploration.py: Scripts for exploring and analyzing job data
 
-Web Interface
+**Web Interface**
 
 index.html: Home page with resume upload form
 config.html: Configuration page for ML parameters
