@@ -1,6 +1,6 @@
 ## This is a quick overview of the files used in the clustering portion of this project
 
-#Scripts
+# Scripts
 
 ### Data Cleaning and Filtering
 
