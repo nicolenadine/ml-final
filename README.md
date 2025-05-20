@@ -1,9 +1,9 @@
 # CS 171 Final Project 
 
-# Part 1:
+### Part 1:
 Clustering used to create cleaned dataset of only postings related to CS/DS from [Kaggle LinkedIn dataset](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings)
 
-# Part 2: 
+### Part 2: 
 Web Application that uses KNN to find job postings that most closely match a user provider resume.
 Also contains a configuration page that allows custom model specification including setting the distance metric, number
 of components in dimension reduction and more. 
