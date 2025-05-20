@@ -1,7 +1,8 @@
 # CS 171 Final Project 
 
+
 ### Part 1:
-Clustering used to create cleaned dataset of only postings related to CS/DS from [Kaggle LinkedIn dataset](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings)
+Clustering used to create cleaned dataset of only postings related to CS/DS from [Kaggle LinkedIn dataset](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings) 
 
 ### Part 2: 
 Web Application that uses KNN to find job postings that most closely match a user provider resume.
@@ -23,3 +24,6 @@ Results include graph of top skills used in matching and their importance as wel
 │   ├── run_clustering.py        # Script to run clustering process
 │   └── unique.py                # Utility for finding unique entities
 ```
+
+**Note** Since data files related to this project exceed git hub upload size a compressed directory containing
+all related files can be downloaded from google drive [here](https://drive.google.com/file/d/14X-rVfdDuDZ8r_yXKuAaSsecuPHL9u5S/view?usp=share_link) . This contains data files used by both the clustering and web app components. 
