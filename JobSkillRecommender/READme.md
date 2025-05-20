@@ -67,7 +67,7 @@ results.html: Results page showing job matches with visualizations
 
 ## Usage
 
-** Important** 
+**Important** 
 Files are currently designed to work with this [data directory](https://drive.google.com/file/d/14X-rVfdDuDZ8r_yXKuAaSsecuPHL9u5S/view?usp=share_link) unzip the downloaded directory and place it inside the JobSkillsRecommender directory.
 
 In future updates I will modify the code to work with any csv dataset that contains the minimum required information. 
@@ -82,16 +82,17 @@ Upload a resume (PDF format)
 Review the job matches displayed on the results page
 
 ## Command Line
-Match a resume to jobs:
-python resume_match.py path/to/resume.pdf --metric cosine --neighbors 10
+Match a resume to jobs (example):
+```python resume_match.py path/to/resume.pdf --metric cosine --neighbors 10```
+
 Options:
 
---metric: Distance metric to use (cosine, euclidean, manhattan)
---neighbors: Number of neighbors for KNN
---dim-reduction: Use dimensionality reduction
---top: Number of top matches to return
---output: Output file path for results
---verbose: Print verbose output
+- --metric: Distance metric to use (cosine, euclidean, manhattan)
+- --neighbors: Number of neighbors for KNN
+- --dim-reduction: Use dimensionality reduction
+- --top: Number of top matches to return
+- --output: Output file path for results
+- --verbose: Print verbose output
 
 ## Algorithm Details
 The matching system works through the following process:
