@@ -111,40 +111,40 @@ Dimensionality reduction methods: PCA, SVD
 Feature standardization options
 
 ## Future Improvements
-Web scraping and logic to retrieve current job data and exclude outdated postings.
-Enhanced Resume Parsing: Improve text extraction from complex PDF formats
-More Advanced NLP: Implement word embeddings or transformers for better semantic matching
-Skill Gap Analysis: Identify missing skills in resumes compared to desired jobs
-Interactive Visualizations: Add more interactive visualizations of job matches
-User Feedback Loop: Incorporate user feedback on match quality to improve the algorithm
-Multi-language Support: Extend support for resumes and job descriptions in multiple languages
-Job Recommendation API: Create a REST API for integrating with other applications
+- Web scraping and logic to retrieve current job data and exclude outdated postings.
+- Enhanced Resume Parsing: Improve text extraction from complex PDF formats
+- More Advanced NLP: Implement word embeddings or transformers for better semantic matching
+- Skill Gap Analysis: Identify missing skills in resumes compared to desired jobs
+- Interactive Visualizations: Add more interactive visualizations of job matches
+- User Feedback Loop: Incorporate user feedback on match quality to improve the algorithm
+- Multi-language Support: Extend support for resumes and job descriptions in multiple languages
+- Job Recommendation API: Create a REST API for integrating with other applications
 
 
 ## File Descriptions
 
 **Main System Components**
 
-app.py: Flask web application for the user interface
-resume_job_system.py: Main system integrating all components
-knn_matcher.py: KNN implementation for matching resumes to jobs
-resume_parser.py: Parser for extracting text from resume PDFs
-job_vectorizer.py: Creates and manages job term vectors
-custom_terms.py: Dictionary of technical terms by category
-term_utils.py: Utilities for term vector creation and similarity calculation
-resume_match.py: Command-line script for matching resumes to jobs
+- app.py: Flask web application for the user interface
+- resume_job_system.py: Main system integrating all components
+- knn_matcher.py: KNN implementation for matching resumes to jobs
+- resume_parser.py: Parser for extracting text from resume PDFs
+- job_vectorizer.py: Creates and manages job term vectors
+- custom_terms.py: Dictionary of technical terms by category
+- term_utils.py: Utilities for term vector creation and similarity calculation
+- resume_match.py: Command-line script for matching resumes to jobs
 
 **Data Processing Components**
 
-job_clustering.py: Implements clustering for job categorization
-job_keyword_extractor.py: Extracts relevant keywords from job postings
-resume_analyzer.py: Extracts structured data from resumes
-filter_job_titles.py: Filters job titles for relevant positions
-clean_cluster_list.py: Cleans clustered job lists for better matching
-data_exploration.py: Scripts for exploring and analyzing job data
+- job_clustering.py: Implements clustering for job categorization
+- job_keyword_extractor.py: Extracts relevant keywords from job postings
+- resume_analyzer.py: Extracts structured data from resumes
+- filter_job_titles.py: Filters job titles for relevant positions
+- clean_cluster_list.py: Cleans clustered job lists for better matching
+- data_exploration.py: Scripts for exploring and analyzing job data
 
 **Web Interface**
 
-index.html: Home page with resume upload form
-config.html: Configuration page for ML parameters
-results.html: Results page showing matched jobs
+- index.html: Home page with resume upload form
+- config.html: Configuration page for ML parameters
+- results.html: Results page showing matched jobs
