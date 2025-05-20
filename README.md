@@ -11,13 +11,16 @@ of components in dimension reduction and more.
 Results include graph of top skills used in matching and their importance as well as a word cloud of key terms used. 
 
 Landing Page
+
 ![Screenshot 2025-05-19 at 6 40 14 PM](https://github.com/user-attachments/assets/6286ae03-9bb0-4f97-bb12-993b7b41d0d3)
 ![Screenshot 2025-05-19 at 6 44 49 PM](https://github.com/user-attachments/assets/520f3afc-8416-41c2-8ce5-66bda95ed072)
 
 Results Page
+
 ![Screenshot 2025-05-19 at 6 42 19 PM](https://github.com/user-attachments/assets/7e721407-5bac-432b-a2d7-00aa5dbbcbb6)
 
 Configuration Page
+
 ![Screenshot 2025-05-19 at 6 39 20 PM](https://github.com/user-attachments/assets/fd4d126d-4ed4-4b62-aab7-2b8e50b59d64)
 
 ### File Structure 
